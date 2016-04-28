@@ -1,0 +1,116 @@
+﻿<Page
+    x:Class="FindMyBusVancouver.StopEstimatesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FindMyBusVancouver"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+          Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="TextBlockTitle"
+                   Text="Departure Times for Stop"
+                   FontSize="24"
+                   Grid.Row="0"
+                   TextWrapping="WrapWholeWords"
+                   Margin="0,0,0,10"/>
+        <TextBlock x:Name="TextBlockMessage"
+                   Text="Loading..."
+                   FontSize="16"
+                   TextWrapping="WrapWholeWords"
+                   Grid.Row="1"
+                   Margin="0,0,0,10"/>
+        <TextBlock x:Name="TextBlockError"
+                   Text="Error: Please enter a valid stop number!"
+                   FontSize="16"
+                   Foreground="Red"
+                   Visibility="Collapsed"
+                   TextWrapping="WrapWholeWords"
+                   Grid.Row="1"/>
+        <ListView x:Name="ListViewStopEstimates"
+                  Grid.Row="2"
+                  SelectionMode="Single"
+                  SelectionChanged="ListViewStopEstimates_SelectionChanged">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10"
+                          Margin="0,0,0,10"
+                          Background="LightGray">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.ColumnSpan="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid Background="#204091"
+                                  Padding="10,5,10,5">
+                                <TextBlock Text="{Binding number}"
+                                           FontWeight="Bold"
+                                           TextWrapping="WrapWholeWords"
+                                           FontSize="20"
+                                           Foreground="White"/>
+                            </Grid>
+                        </Grid>
+                        <TextBlock Grid.Row="1"
+                                   Grid.ColumnSpan="3"
+                                   Text="{Binding name}"
+                                   FontSize="16"
+                                   FontWeight="Bold"
+                                   Margin="10,10,0,0"/>
+                        <StackPanel Grid.Row="2"
+                                    Margin="5,10,5,0"
+                                    HorizontalAlignment="Center">
+                            <TextBlock Text="{Binding estimate1}"
+                                       FontSize="24"/>
+                            <TextBlock Text="{Binding destination1}"
+                                       TextWrapping="WrapWholeWords"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="2"
+                                    Grid.Column="1"
+                                    Margin="5,10,5,0"
+                                    HorizontalAlignment="Center">
+                            <TextBlock Text="{Binding estimate2}"
+                                       FontSize="24"/>
+                            <TextBlock Text="{Binding destination2}"
+                                       TextWrapping="WrapWholeWords"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="2"
+                                    Grid.Column="2"
+                                    Margin="5,10,5,0"
+                                    HorizontalAlignment="Center">
+                            <TextBlock Text="{Binding estimate3}"
+                                       FontSize="24"/>
+                            <TextBlock Text="{Binding destination3}"
+                                       TextWrapping="WrapWholeWords"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

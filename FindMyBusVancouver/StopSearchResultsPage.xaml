@@ -1,0 +1,98 @@
+﻿<Page
+    x:Class="FindMyBusVancouver.StopSearchResultsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FindMyBusVancouver"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+          Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="TextBlockTitle"
+                   Text="Stop Search Results"
+                   FontSize="24"
+                   Grid.Row="0"
+                   TextWrapping="WrapWholeWords"
+                   Margin="0,0,0,10"/>
+        <TextBlock x:Name="TextBlockMessage"
+                   Text="Loading..."
+                   FontSize="16"
+                   TextWrapping="WrapWholeWords"
+                   Grid.Row="1"/>
+        <TextBlock x:Name="TextBlockError"
+                   Text="Error: No stops found."
+                   FontSize="16"
+                   Foreground="Red"
+                   Visibility="Collapsed"
+                   TextWrapping="WrapWholeWords"
+                   Grid.Row="1"/>
+        <ListView x:Name="ListViewSearchResults"
+                  Grid.Row="2"
+                  SelectionMode="Single"
+                  SelectionChanged="ListViewSearchResults_SelectionChanged">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10"
+                          Margin="0,0,0,10"
+                          Background="LightGray">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.ColumnSpan="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid Background="#d7a60f"
+                                  Padding="10,5,10,5">
+                                <TextBlock Text="{Binding number}"
+                                           FontWeight="Bold"
+                                           TextWrapping="WrapWholeWords"
+                                           FontSize="20"/>
+                            </Grid>
+                        </Grid>
+                        <TextBlock Grid.Column="1"
+                                   Text="{Binding distance}"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"/>
+                        <TextBlock Grid.Row="1"
+                                   Grid.ColumnSpan="2"
+                                   Text="{Binding name}"
+                                   FontSize="16"
+                                   FontWeight="Bold"
+                                   Margin="10,10,0,0"/>
+                        <TextBlock Grid.Row="2"
+                                   Grid.ColumnSpan="2"
+                                   Text="{Binding routes}"
+                                   FontSize="16"
+                                   Margin="10,10,0,0"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>
